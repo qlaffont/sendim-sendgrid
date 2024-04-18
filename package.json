@@ -83,5 +83,5 @@
     "node-fetch": "2",
     "sendim": "^1.2.0"
   },
-  "packageManager": "pnpm@9.0.2"
+  "packageManager": "pnpm@9.0.3"
 }
