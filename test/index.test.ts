@@ -11,7 +11,7 @@ const mockSend = jest.fn().mockImplementation(() => {
   ];
 });
 
-jest.mock('node-fetch', () =>
+jest.mock('node-fetch-native', () =>
   jest.fn().mockImplementation(() => ({
     status: process.env.FAILED === 'true' ? 401 : 404,
   })),
