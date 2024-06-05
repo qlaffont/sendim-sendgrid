@@ -1,5 +1,5 @@
 {
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -30,7 +30,6 @@
   },
   "name": "sendim-sendgrid",
   "author": "qlaffont",
-  "module": "dist/sendim-sendgrid.esm.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/qlaffont/sendim-sendgrid.git"
@@ -39,16 +38,6 @@
     "url": "https://github.com/qlaffont/sendim-sendgrid/issues",
     "email": "contact@qlaffont.com"
   },
-  "size-limit": [
-    {
-      "path": "dist/sendim-sendgrid.cjs.production.min.js",
-      "limit": "10 KB"
-    },
-    {
-      "path": "dist/sendim-sendgrid.esm.js",
-      "limit": "10 KB"
-    }
-  ],
   "jest": {
     "collectCoverage": true,
     "coverageReporters": [
