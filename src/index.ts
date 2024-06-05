@@ -1,7 +1,5 @@
 import sgMail from '@sendgrid/mail';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//@ts-ignore
-import fetch from 'node-fetch';
+import fetch from 'node-fetch-native';
 import {
   RawMailOptions,
   SendimTransportInterface,
