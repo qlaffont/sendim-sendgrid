@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -11,12 +11,11 @@
     "node": ">=10"
   },
   "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
+    "build": "tsup src/index.ts",
     "test": "jest",
     "test:dev": "jest --watchAll",
     "lint": "eslint src test --fix",
-    "prepare": "tsdx build",
+    "prepare": "tsup src/index.ts",
     "size": "size-limit",
     "analyze": "size-limit --why",
     "np": "np"
@@ -75,6 +74,7 @@
     "ts-jest": "^29.0.5",
     "tsdx": "0.14.1",
     "tslib": "2.6.3",
+    "tsup": "^8.1.0",
     "typescript": "5.4.5"
   },
   "dependencies": {
