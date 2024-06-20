@@ -69,7 +69,7 @@
     "tsdx": "0.14.1",
     "tslib": "2.6.3",
     "tsup": "^8.1.0",
-    "typescript": "5.4.5"
+    "typescript": "5.5.2"
   },
   "dependencies": {
     "@sendgrid/mail": "^8.1.3",
