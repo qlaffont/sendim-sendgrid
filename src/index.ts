@@ -1,4 +1,6 @@
-import sgMail from '@sendgrid/mail';
+import { classes } from '@sendgrid/helpers';
+import { MailData } from '@sendgrid/helpers/classes/mail';
+const { Mail } = classes;
 import fetch from 'node-fetch-native';
 import {
   RawMailOptions,
@@ -21,19 +23,18 @@ export interface SendimSendgridProviderConfig {
 }
 export class SendimSendgridProvider implements SendimTransportInterface {
   providerName = 'sendgrid';
-  api: typeof sgMail;
+  apiKey: string;
 
   constructor(public config: SendimSendgridProviderConfig) {
     this.config = config;
-    this.api = sgMail;
-    this.api.setApiKey(this.config.apiKey);
+    this.apiKey = this.config.apiKey;
   }
 
   async isHealthy() {
     const response = await fetch('https://api.sendgrid.com/v3/resource', {
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${this.config.apiKey}`,
+        Authorization: `Bearer ${this.apiKey}`,
       },
     });
 
@@ -60,7 +61,7 @@ export class SendimSendgridProvider implements SendimTransportInterface {
         content_id: item.name,
       })) || [];
 
-    const send = await this.api.send({
+    return this.send({
       from: rawSender.email,
       to: this.parseMultipleEmail(rawTo),
       subject: subject,
@@ -71,10 +72,6 @@ export class SendimSendgridProvider implements SendimTransportInterface {
       attachments,
       replyTo: reply,
     });
-
-    if (send[0].statusCode < 200 && send[0].statusCode > 299) {
-      throw new Error(send[0].body.toString());
-    }
   }
 
   async sendTransactionalMail(transacMailOptions: TransactionalMailOptions) {
@@ -98,7 +95,7 @@ export class SendimSendgridProvider implements SendimTransportInterface {
         content_id: item.name,
       })) || [];
 
-    const send = await this.api.send({
+    return this.send({
       from: rawSender.email,
       to: this.parseMultipleEmail(rawTo),
       cc: this.parseMultipleEmail(rawCc),
@@ -108,12 +105,28 @@ export class SendimSendgridProvider implements SendimTransportInterface {
       attachments,
       replyTo: reply,
     });
-
-    if (send[0].statusCode < 200 && send[0].statusCode > 299) {
-      throw new Error(send[0].body.toString());
-    }
   }
 
   private parseMultipleEmail = (emailInfo?: EmailInfo) =>
     emailInfo?.map((info) => info.email);
+
+  private async send(datas: MailData) {
+    const mail = Mail.create(datas);
+    const json = mail.toJSON();
+
+    const request = await fetch('https://api.sendgrid.com/v3/mail/send', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.apiKey}`,
+      },
+      body: JSON.stringify(json),
+    });
+
+    if (request.status < 200 && request.status > 299) {
+      throw new Error(request.body?.toString());
+    }
+
+    return request.json();
+  }
 }

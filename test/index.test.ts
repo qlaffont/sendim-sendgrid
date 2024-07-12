@@ -3,23 +3,17 @@ import { Sendim } from 'sendim';
 
 import { SendimSendgridProvider, SendimSendgridProviderConfig } from '../src';
 
-const mockSend = jest.fn().mockImplementation(() => {
-  return [
-    {
-      statusCode: 202,
-    },
-  ];
-});
+// const mockSend = jest.fn().mockImplementation(() => ({
+//   status: 202,
+//   json: async () => ({}),
+// }));
 
 jest.mock('node-fetch-native', () =>
   jest.fn().mockImplementation(() => ({
     status: process.env.FAILED === 'true' ? 401 : 404,
+    json: async () => ({}),
   })),
 );
-
-jest.mock('@sendgrid/mail');
-const sendgrid = require('@sendgrid/mail');
-sendgrid.send = mockSend;
 
 describe('Sendim Sendgrid', () => {
   beforeEach(() => {
@@ -85,16 +79,14 @@ describe('Sendim Sendgrid', () => {
       },
     });
 
-    expect(mockSend).toBeCalledWith({
-      attachments: [],
-      html: '<p>test</p>',
-      from: 'test@test.fr',
-      subject: 'test',
-      text: 'test',
-      to: ['test1@test.fr', 'test2@test.fr'],
-      bcc: undefined,
-      cc: undefined,
-      replyTo: undefined,
+    const fetch = require('node-fetch-native');
+    expect(fetch).lastCalledWith('https://api.sendgrid.com/v3/mail/send', {
+      body: '{"from":{"email":"test@test.fr"},"subject":"test","personalizations":[{"to":[{"email":"test1@test.fr"},{"email":"test2@test.fr"}]}],"content":[{"value":"test","type":"text/plain"},{"value":"<p>test</p>","type":"text/html"}]}',
+      headers: {
+        Authorization: 'Bearer undefined',
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
     });
   });
 
@@ -124,17 +116,14 @@ describe('Sendim Sendgrid', () => {
       },
     });
 
-    expect(mockSend).toBeCalledWith({
-      from: 'test@test.fr',
-      bcc: undefined,
-      cc: undefined,
-      replyTo: undefined,
-      templateId: '6',
-      dynamicTemplateData: {
-        TEST: 'testParam',
+    const fetch = require('node-fetch-native');
+    expect(fetch).lastCalledWith('https://api.sendgrid.com/v3/mail/send', {
+      body: '{"from":{"email":"test@test.fr"},"personalizations":[{"to":[{"email":"test1@test.fr"},{"email":"test2@test.fr"}]}],"template_id":"6"}',
+      headers: {
+        Authorization: 'Bearer undefined',
+        'Content-Type': 'application/json',
       },
-      to: ['test1@test.fr', 'test2@test.fr'],
-      attachments: [],
+      method: 'POST',
     });
   });
 });
