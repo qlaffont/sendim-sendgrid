@@ -27,7 +27,7 @@
   },
   "pnpm": {
     "overrides": {
-      "axios": "1.7.5"
+      "axios": "1.7.6"
     }
   },
   "name": "sendim-sendgrid",
