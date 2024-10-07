@@ -22,7 +22,7 @@ importers:
         version: 1.6.4
       sendim:
         specifier: ^1.2.0
-        version: 1.2.177
+        version: 1.2.178
     devDependencies:
       '@jest/globals':
         specifier: 29.7.0
@@ -2275,11 +2275,13 @@ packages:
   eslint@6.8.0:
     resolution: {integrity: sha512-K+Iayyo2LtyYhDSYwz5D5QdWw0hCacNzyq1Y821Xna2xSJj7cijoLLYmLxTQgcgZ9mC61nryMy9S7GRbYpI5Ig==}
     engines: {node: ^8.10.0 || ^10.13.0 || >=11.10.1}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
 
   eslint@8.57.0:
     resolution: {integrity: sha512-dZ6+mexnaTIbSBZWgou51U6OmzIhYM2VcNdtiTtI7qPNZm35Akpr0f6vtw3w1Kmn5PYo+tZVfh13WrhpS6oLqQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
 
   espree@6.2.1:
@@ -4157,8 +4159,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  sendim@1.2.177:
-    resolution: {integrity: sha512-eVwtWy+oJYn/R47jQliSnBhGVEWced/gfYM3xRL2z6Lg5ZvUQkTSPPLTIRvXV8ydILnq4rUKsBe5zYqI2IzQzg==}
+  sendim@1.2.178:
+    resolution: {integrity: sha512-YyY6JmFAam1GbR1L26lDpWV0bvTzb5voOl3X2F7guon3oEJGLROpgwFCP6VFY7A76Y8QPsC1hrt1uHskPynj8Q==}
     engines: {node: '>=10'}
 
   serialize-javascript@4.0.0:
@@ -10198,7 +10200,7 @@ snapshots:
 
   semver@7.6.2: {}
 
-  sendim@1.2.177:
+  sendim@1.2.178:
     dependencies:
       pino: 9.4.0
 
