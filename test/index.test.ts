@@ -8,12 +8,12 @@ import { SendimSendgridProvider, SendimSendgridProviderConfig } from '../src';
 //   json: async () => ({}),
 // }));
 
-jest.mock('node-fetch-native', () =>
-  jest.fn().mockImplementation(() => ({
+jest.mock('node-fetch-native', () => ({
+  fetch: jest.fn().mockImplementation(() => ({
     status: process.env.FAILED === 'true' ? 401 : 404,
     json: async () => ({}),
   })),
-);
+}));
 
 describe('Sendim Sendgrid', () => {
   beforeEach(() => {
@@ -79,7 +79,7 @@ describe('Sendim Sendgrid', () => {
       },
     });
 
-    const fetch = require('node-fetch-native');
+    const { fetch } = require('node-fetch-native');
     expect(fetch).lastCalledWith('https://api.sendgrid.com/v3/mail/send', {
       body: '{"from":{"email":"test@test.fr"},"subject":"test","personalizations":[{"to":[{"email":"test1@test.fr"},{"email":"test2@test.fr"}]}],"content":[{"value":"test","type":"text/plain"},{"value":"<p>test</p>","type":"text/html"}]}',
       headers: {
@@ -116,7 +116,7 @@ describe('Sendim Sendgrid', () => {
       },
     });
 
-    const fetch = require('node-fetch-native');
+    const { fetch } = require('node-fetch-native');
     expect(fetch).lastCalledWith('https://api.sendgrid.com/v3/mail/send', {
       body: '{"from":{"email":"test@test.fr"},"personalizations":[{"to":[{"email":"test1@test.fr"},{"email":"test2@test.fr"}]}],"template_id":"6"}',
       headers: {

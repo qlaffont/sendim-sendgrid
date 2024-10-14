@@ -1,9 +1,7 @@
-import 'node-fetch-native/polyfill';
-
 import { classes } from '@sendgrid/helpers';
 import { MailData } from '@sendgrid/helpers/classes/mail';
 const { Mail } = classes;
-import fetch from 'node-fetch-native';
+import { fetch } from 'node-fetch-native';
 import {
   RawMailOptions,
   SendimTransportInterface,
