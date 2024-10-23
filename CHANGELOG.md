@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.0.41 (2024-10-23)
+
+
+### Bug Fixes
+
+* **deps:** update dependency sendim to v1.2.187 ([13c7053](https://github.com/qlaffont/sendim-sendgrid/commit/13c705378b7a1e9a7f310f24a9447902854c39f2))
+
 ### 1.0.40 (2024-10-22)
 
 
