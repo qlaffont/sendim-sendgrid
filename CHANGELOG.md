@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.0.49 (2024-11-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @types/node-fetch to v2.6.12 ([#166](https://github.com/qlaffont/sendim-sendgrid/issues/166)) ([e8755dc](https://github.com/qlaffont/sendim-sendgrid/commit/e8755dc4eaccb792653b3cc11f7df8a7661272c0))
+
 ### 1.0.48 (2024-11-05)
 
 
