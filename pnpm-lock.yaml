@@ -22,7 +22,7 @@ importers:
         version: 1.6.4
       sendim:
         specifier: ^1.2.0
-        version: 1.2.202
+        version: 1.2.203
     devDependencies:
       '@jest/globals':
         specifier: 29.7.0
@@ -4122,8 +4122,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  sendim@1.2.202:
-    resolution: {integrity: sha512-/voSIQuH4BBXR53cuePE9fDfAB+59zioWlyiUJgnnq5rShZiJS2rwkwi3rpTbt4aSyXD68cSJLwTLVRb+/JnCw==}
+  sendim@1.2.203:
+    resolution: {integrity: sha512-uT84aGxdkSGbWC23Vcgc3bUXp7yGyUYWMHwTni/ctjNQmhpik81y8I1EZ1n9tw30JwPzlFxfb0mkb6JZ8YdPlA==}
     engines: {node: '>=10'}
 
   serialize-javascript@4.0.0:
@@ -10129,7 +10129,7 @@ snapshots:
 
   semver@7.6.2: {}
 
-  sendim@1.2.202:
+  sendim@1.2.203:
     dependencies:
       pino: 9.5.0
 
